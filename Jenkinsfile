@@ -1,4 +1,5 @@
 node ('master') {
+    checkout scm
     stage('Build') {
         echo 'Building....'
         withMaven(maven: 'M3') {
