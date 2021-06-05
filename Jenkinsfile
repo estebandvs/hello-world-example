@@ -1,24 +1,16 @@
-pipeline {
-  agent {
-    node {
-      label 'master'
-    }
-    
-  }
-  stages {
+node {
     stage('Build') {
-      steps {
+        echo 'Building....'
         withMaven(maven: 'M3') {
           sh 'mvn clean install'
         }
-        
-      }
     }
-    stage('Results') {
-      steps {
+    stage('Test') {
+        echo 'Testing....'
         junit '**/target/surefire-reports/TEST-*.xml'
         archiveArtifacts 'target/*.jar'
-      }
     }
-  }
+    stage('Deploy') {
+        echo 'Deploying....'
+    }
 }
