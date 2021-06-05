@@ -1,4 +1,4 @@
-node {
+node ('master') {
     stage('Build') {
         echo 'Building....'
         withMaven(maven: 'M3') {
